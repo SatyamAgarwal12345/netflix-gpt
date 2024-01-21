@@ -2,8 +2,9 @@ import React from "react";
 import logo from "../assets/images/netflix-logo.png";
 import profile from "../assets/images/profile.jpg";
 import { useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { adduser, removeUser } from "../utils/store/userSlice";
 
@@ -11,12 +12,26 @@ const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const navigate = useNavigate();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const {uid,email,displayName} = user;
+        dispatch(adduser({uid:uid,email:email,displayName:displayName}))
+        navigate("/browse")
+        // ...
+      } else {
+        dispatch(removeUser())
+        navigate('/')
+      }
+    });
+  }, []);
 
   const signOutHandler = () => {
     signOut(auth)
       .then(() => {
         dispatch(removeUser());
-        navigate("/");
       })
       .catch((error) => {});
   };

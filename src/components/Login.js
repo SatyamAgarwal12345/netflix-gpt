@@ -5,15 +5,12 @@ import { useState, useRef } from "react";
 import { Validation } from "../utils/useValidation";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { adduser } from "../utils/store/userSlice";
-import {  signInWithEmailAndPassword } from "firebase/auth";
-
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [isSignIn, setIsSignIn] = useState(true);
   const [errMsg, setErrMsg] = useState(null);
   const signInHandler = () => {
@@ -33,15 +30,20 @@ const Login = () => {
 
     if (!isSignIn) {
       // signup
-      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
         .then((userCredential) => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
           }).then(() => {
             const { uid, email, displayName } = auth.currentUser;
-            dispatch(adduser({ uid: uid, email: email, displayName: displayName }));
-            navigate("/browse");
+            dispatch(
+              adduser({ uid: uid, email: email, displayName: displayName })
+            );
           });
         })
         .catch((error) => {
@@ -51,10 +53,13 @@ const Login = () => {
         });
     } else {
       // login
-      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
         .then((userCredential) => {
           const user = userCredential.user;
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -68,7 +73,11 @@ const Login = () => {
     <div className="relative min-h-screen flex items-center justify-center">
       <Header />
       <div className="absolute inset-0 overflow-hidden">
-        <img src={bgImage} className="w-full h-full object-cover" alt="Background" />
+        <img
+          src={bgImage}
+          className="w-full h-full object-cover"
+          alt="Background"
+        />
       </div>
       <form
         onSubmit={(e) => {
