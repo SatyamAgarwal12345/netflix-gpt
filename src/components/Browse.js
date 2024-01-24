@@ -1,15 +1,19 @@
-
-import Header from './Header'
-import useNowPlayingMovies from '../hooks/useNowPlayingMovies'
-
-
+import Header from "./Header";
+import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
+import MainContainer from "./MainContainer";
+import SecondaryContainer from "./SecondaryContainer";
 
 const Browse = () => {
   // this hook fetch data from tmdb and update the store
-  useNowPlayingMovies()
+  useNowPlayingMovies();
   return (
-    <div><Header/></div>
-  )
-}
+    <div>
+      <Header />
 
-export default Browse
+      <MainContainer />
+      <SecondaryContainer />
+    </div>
+  );
+};
+
+export default Browse;

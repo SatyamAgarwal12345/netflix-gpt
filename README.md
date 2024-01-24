@@ -13,3 +13,9 @@
 -created Redux store with UserSlice
 
 - BugFix : if user not logged in Redirect / Browse to Login page vice-versa
+- custom hook nowplaying movies
+- main container
+- secondary container
+- fetch data for trailer video
+- Embedded the YT video and make it auto play and mute
+- twilwind to look awsome
