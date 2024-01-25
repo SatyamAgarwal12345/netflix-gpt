@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { URL_OPTION } from "../utils/constants";
+import { URL_OPTION } from "../../utils/constants";
 import { useState } from "react";
 
 const VideoBackground = ({ movie_id }) => {
@@ -17,7 +17,7 @@ const VideoBackground = ({ movie_id }) => {
       (video) => video.type === "Trailer"
     );
     const trailer = filteradata.length ? filteradata[0] : json.results[0];
-    console.log(trailer);
+    // console.log(trailer);
     setMovieKey(trailer.key);
   };
   useEffect(() => {
@@ -25,7 +25,7 @@ const VideoBackground = ({ movie_id }) => {
   }, []);
 
   return (
-    <div>
+    <div className="-mt-[85px] ">
       <iframe
         //getting trailrer from youtube based on key from filtered first movie trailer
         className="w-full aspect-video "

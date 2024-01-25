@@ -3,11 +3,10 @@ import bgImage from "../assets/images/page.jpg";
 import Header from "./Header";
 import { useState, useRef } from "react";
 import { Validation } from "../utils/useValidation";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { adduser } from "../utils/store/userSlice";
-import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
   const dispatch = useDispatch();

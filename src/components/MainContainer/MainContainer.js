@@ -4,7 +4,7 @@ import VideoBackground from "./VideoBackground";
 import VideoTitle from "./VideoTitle";
 const MainContainer = () => {
   const movies = useSelector((store) => store.movies.nowPlayingMovies);
-  console.log(movies);
+  // console.log(movies);
   if (!movies) return;
   // getting first movie from the list of nowplaying movies and extracting the required datas
   const movie = movies[0];

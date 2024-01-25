@@ -19,3 +19,5 @@
 - fetch data for trailer video
 - Embedded the YT video and make it auto play and mute
 - twilwind to look awsome
+- fetched other type of movies updated on store then displaying in screen
+-  
